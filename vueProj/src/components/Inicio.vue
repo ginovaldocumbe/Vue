@@ -2,13 +2,112 @@
 import Header from "./header.vue";
 import Card from "./card.vue";
 import Footer from "./footer.vue";
-export default {
-  components: {
+
+export default{
+    name: 'Principal',
+    data() {
+        return {
+            prov: ["Maputo", "Xai-Xai", "Inhambane", "Beira", "Chimoio", "Nampula", "Lichinga", "Tete", "Quelimane", "Pemba"],
+            prov1: [],
+            prov2: [],
+            prov3: [],
+            interval: null,
+            controlador: 0,
+        };
+    },
+    components: {
     Header,
     Footer,
     Card
-  }
-}
+  },
+    methods: {
+        renew() {
+            if (this.controlador == 10) {
+                this.controlador = 0;
+                apiKey: "423a905a8694371beac028a0e861eabb";
+                fetch(
+                    "https://api.openweathermap.org/data/2.5/weather?q=Maputo&units=metric&appid="
+                    + this.apiKey
+                )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        this.prov1[0] = data.name;
+                        this.prov1[1] = data.main.emp_min;
+                        this.prov1[2] = data.main.temp_max;
+                        this.prov1[3] = data.weather.weather[0].icon;
+                        this.prov1[4] = data.weather[0].description;
+
+                    })
+                    .catch((err) => console.log(err));
+            } else {
+                this.controlador = this.controlador + 3;
+
+                for (let a = this.controlador - 3; a < this.controlador; a++) {
+                    fetch(
+                        "https://api.openweathermap.org/data/2.5/weather?q=" +
+                        this.prov[a] +
+                        ",MZ&units=metric&APPID=250585e7bf3a2a19e0c48b7945ca6982"
+                    )
+                        .then((resp) => resp.json())
+                        .then((data) => {
+                            if (a == 0 || a == 3 || a == 6) {
+                                this.prov1[0] = data.name;
+                                this.prov1[1] = data.main.temp_min;
+                                this.prov1[2] = data.main.temp_max;
+                                this.prov1[3] = data.weather.weather[0].icon;
+                                this.prov1[4] = data.weather[0].description;
+                            } else if (a == 1 || a == 4 || a == 7) {
+                                this.prov2[0] = data.name;
+                                this.prov2[1] = data.main.temp_min;
+                                this.prov2[2] = data.main.temp_max;
+                                this.prov1[3] = data.weather.weather[0].icon;
+                                this.prov2[4] = data.weather[0].description;
+                            } else if (a == 2 || a == 5 || a == 8) {
+                                this.prov3[0] = data.name;
+                                this.prov3[1] = data.main.temp_min;
+                                this.prov3[2] = data.main.temp_max;
+                                this.prov1[3] = data.weather.weather[0].icon;
+                                this.prov3[4] = data.weather[0].description;
+                            }
+                        })
+                        // .catch((err) => console.log(err));
+                }
+            }
+        },
+    },
+};
+
+
+
+
+  
+// let weather = {
+//     apiKey: "423a905a8694371beac028a0e861eabb",
+//     fetchWeather: function (cidade) {
+//         fetch(
+//             "https://api.openweathermap.org/data/2.5/weather?q="
+//             +cidade
+//             +"&units=metric&appid="
+//             +this.apiKey
+//         )
+//             .then((response) => response.json())
+//     .then((data) => this.displayW(data));
+//     },
+//   }
+
+    // displayW : function(data,id){
+    //   const {name} = data;
+    //   const {icon, description} = data.weather[0];
+    //   const {temp_min,temp_max}= data.main;
+    //   console.log("Esse e um teste "+name,icon,description);
+    //   document.querySelector(".card-body :nth-child(1)").innerText= name;
+    //   document.querySelector("#icone").src= "https://openweathermap.org/img/wn/"+icon+".png";
+    //   document.querySelector(".minima").innerText= temp_min+" °C"; 
+    //   document.querySelector(".maxima").innerText= temp_max+" °C"; 
+    // }
+// }; 
+
+
 </script>
 
 <template>
@@ -19,7 +118,10 @@ export default {
   </div>
   <section>
     <Header />
-    <Card />
+    <div>
+      <Card :cards="prov1" />
+    </div>
+    
     <Footer />
   </section>
 </template>

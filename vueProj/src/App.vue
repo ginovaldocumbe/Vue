@@ -2,6 +2,7 @@
 
 import Inicio from './components/Inicio.vue'
 
+
 components: {
   Inicio
 }

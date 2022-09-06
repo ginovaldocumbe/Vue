@@ -11,7 +11,7 @@ export default {
         <div id="card0" class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ dados[0] }}</h5>
+                    <h5 class="card-title" v-if="cards">{{cards[0] }}</h5>
                     <img src="" id="icone" class="img-fluid">
                     <div class="temp">
                         <span class="minima">10</span>
