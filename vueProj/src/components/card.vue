@@ -7,11 +7,11 @@ export default {
 </script>
 
 <template>
-    <div id="todos" class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- <div id="todos" class="row row-cols-1 row-cols-md-3 g-4"> -->
         <div id="card0" class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" v-if="cards">{{cards[0] }}</h5>
+                    <h5 class="card-title" v-if="cards">{{cards[1]}}Provincia</h5>
                     <img src="" id="icone" class="img-fluid">
                     <div class="temp">
                         <span class="minima">10</span>
@@ -20,13 +20,17 @@ export default {
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <style>
 * {
     color: white;
     font-size: 16px;
+}
+#card0,.card{
+    width: 100% !important;
+    height: 90%;
 }
 
 #icone {

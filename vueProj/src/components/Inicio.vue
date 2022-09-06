@@ -60,17 +60,17 @@ export default{
                                 this.prov2[0] = data.name;
                                 this.prov2[1] = data.main.temp_min;
                                 this.prov2[2] = data.main.temp_max;
-                                this.prov1[3] = data.weather.weather[0].icon;
+                                this.prov2[3] = data.weather.weather[0].icon;
                                 this.prov2[4] = data.weather[0].description;
                             } else if (a == 2 || a == 5 || a == 8) {
                                 this.prov3[0] = data.name;
                                 this.prov3[1] = data.main.temp_min;
                                 this.prov3[2] = data.main.temp_max;
-                                this.prov1[3] = data.weather.weather[0].icon;
+                                this.prov3[3] = data.weather.weather[0].icon;
                                 this.prov3[4] = data.weather[0].description;
                             }
                         })
-                        // .catch((err) => console.log(err));
+                        .catch((err) => console.log(err));
                 }
             }
         },
@@ -118,8 +118,10 @@ export default{
   </div>
   <section>
     <Header />
-    <div>
+    <div class="cd">
       <Card :cards="prov1" />
+      <Card :cards="prov2" />
+      <Card :cards="prov3" />
     </div>
     
     <Footer />
@@ -134,6 +136,13 @@ section {
   flex-direction: column;
   justify-content: space-between !important;
   align-items: center;
+}
+.cd{
+  display: flex;
+  padding-top: 50px;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .custom-shape-divider-top-1662394809 {
@@ -156,5 +165,11 @@ section {
 
 .custom-shape-divider-top-1662394809 .shape-fill {
   fill: #2c032c;
+}
+@media only screen and (min-width: 768px) {
+  .cd{
+    display: flex;
+    flex-direction: row;
+  }
 }
 </style>
