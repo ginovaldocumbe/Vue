@@ -1,6 +1,7 @@
 <script>
+
 export default {
-  name: "cards"
+  props: ["cards"],
 }
 </script>
 
@@ -8,11 +9,11 @@ export default {
   <div id="card0" class="col">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Provincia</h5>
-        <img src="" id="icone" class="img-fluid">
+        <h5 class="card-title" v-if="cards">{{cards[0]}}</h5>
+        <img v-if="cards[3]" src="https://openweathermap.org/img/wn/02n.png" id="icone" class="img-fluid">
         <div class="temp">
-          <span class="minima">10</span>
-          <span class="maxima">10 °C</span>
+          <span class="minima">{{cards[1]}} °C</span>
+          <span class="maxima">{{cards[2]}} °C</span>
         </div>
       </div>
     </div>
@@ -27,7 +28,7 @@ export default {
 
 #card0,
 .card {
-  margin-top: 20%;
+  /* margin-top: 20%; */
   width: 100% !important;
   height: 90%;
 }
