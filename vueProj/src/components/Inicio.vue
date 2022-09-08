@@ -124,7 +124,6 @@ export default {
       <Card :cards="prov2" />
       <Card :cards="prov3" />
     </div>
-
     <Footer />
   </section>
 </template>
