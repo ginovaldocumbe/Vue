@@ -1,12 +1,12 @@
 <script setup>
-
 import Inicio from './components/Inicio.vue'
 
-
-components: {
-  Inicio
-}
-
+export default {
+  name: "App",
+  components: {
+    Inicio,
+  },
+};
 
 </script>
 
